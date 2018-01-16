@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/devey/CLionProjects/Competitive/HackerEarth/DEC17/HPAndSplittingOfArray/fourth/main.cpp
+iostream
+-
+fstream
+-
+vector
+-
+cmath
+-
+cstring
+-
+array
+-
+algorithm
+-
+set
+-
+ext/pb_ds/assoc_container.hpp
+-
+

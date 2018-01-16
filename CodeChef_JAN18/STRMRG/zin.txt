@@ -1,0 +1,40 @@
+13
+4 4
+abab
+baba
+7 4
+ababzzz
+baba
+2 4
+ab
+baba
+2 2
+aa
+bb
+1 1
+a
+b
+1 1
+a
+a
+8 9
+abcaabca
+bcaaaabca
+10 9
+ababzzzzzz
+babazzzzz
+19 23
+aeaabcdeeddbabcceaa
+eabcedeeaaaaedccaebaaaa
+4 4
+abcd
+efgh
+9 10
+asdfdsaas
+ffddasasaa
+16 16
+ebcadbecadbecbad
+abcdeabcededabec  
+9 9
+abdcdbabc
+abdcbdabd
