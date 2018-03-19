@@ -6,6 +6,7 @@
 #include <cstring>
 #include <random>
 #include <ctime>
+#include <string>
 
 #define BIG 1000000007
 #define INF 0x7fffffff
@@ -29,6 +30,84 @@ typedef vector <vector <int>> vvi;
 
 clock_t start = clock();
 
+template <class T> void swapp (T& a, T& b)
+{
+    T c(std::move(a)); a=std::move(b); b=std::move(c);
+}
+
+//QUICKSORT STUFF
+int partitioner(int start, int end, int array[], string arraySister[]) {
+
+    int pivot=array[start];
+    int i=start-1;
+    int j=end+1;
+
+    while(true) {
+        do {
+            i++;
+        } while (array[i]<pivot);
+
+        do {
+            j--;
+        } while (array[j]>pivot);
+
+        if (i>=j) return j;
+
+        swapp(array[i], array[j]);
+        swapp(arraySister[i], arraySister[j]);
+    }
+}
+
+void quicksort(int start, int end, int array[], string arraySister[]) {
+
+    if (start<end) {
+
+        int p=partitioner(start, end, array, arraySister);
+
+        //Lower quicksort
+        quicksort(start, p, array, arraySister);
+
+        //Higher quicksort
+        quicksort(p+1, end, array, arraySister);
+    }
+    else return;
+}
+
+void shuff(string a[], int num[], int n) {
+	fl (i, n) {
+		int rn = rand() % n;
+
+		int t = num[i];
+		string temp = a[i];
+
+		num[i] = num[rn];
+		a[i] = a[rn];
+
+		num[rn] = t;
+		a[rn] = temp;
+	}
+}
+
+int palCount(string s[], int n) {
+	string nns;
+	int count = 0;
+	fl (i, n) {
+		int wCount = 0;
+		fl (j, s[i].size()) {
+            if (s[i][j] == 'w') ++ wCount;
+            else {
+                if (wCount != 0) nns += to_string(wCount);
+                wCount = 0;
+            }
+		}
+        if (wCount != 0) nns += to_string(wCount);
+	}
+    size_t sz = nns.size();
+	fl (i, sz)
+        if (nns[i] != nns[sz - i - 1]) ++count;
+	return count;
+}
+
 int main() {
 
 	srand(time(NULL));
@@ -41,31 +120,40 @@ int main() {
 	fl (i, n) cin >> b[i];
 	fl (i, n) num[i] = i + 1;
 
+	double tim = 0.0;
+
 	string ss[n];
 	fl (i, n) {
-		fl (j, a[i] - b[i]) {
-			ss[i] += 'w';
-		}
-		fl (j, b[i]) {
-			ss[i] += 'b';
-		}
-		/*fl (j, n) {
-            int rn = rand() % n;
-            char temp = ss[i][j];
-     	    ss[i][j] = ss[i][rn];
-            ss[i][rn] = temp;
-        }*/
+		string ts;
+		fl (j, a[i] - b[i]) ts += 'w';
+		fl (j, b[i]) ts += 'b';
+		ss[i] = ts;
 	}
-	fl (i, n) {
-        int rn = rand() % n;
-        int temp = num[i];
-        num[i] = num[rn];
-        num[rn] = temp;
-    }
 
-	fl (i, n) cout << ss[i] << endl;
-	fl (i, n) cout << num[i] << " ";
-	cout << endl;
+	int grandMin = INF;
+	string grandArr[n];
+	int grandA[n];
+
+	while (tim < 0.96) {
+		shuff(ss, num, n);
+		int p = palCount(ss, n);
+		if (p < grandMin) {
+			grandMin = p;
+			fl (i, n) grandArr[i] = ss[i];
+			fl (i, n) grandA[i] = num[i];
+		}
+		clock_t end = clock();
+		tim = (end - start) / (CLOCKS_PER_SEC * 1.0);
+	}
+
+	int nCopy[n];
+	fl (i, n) nCopy[i] = grandA[i];
+
+	quicksort(0, n - 1, grandA, grandArr);
+
+	fl (i, n) cout << grandArr[i] << endl;
+	fl (i, n) cout << nCopy[i] << " ";
 
     return 0;
 }
+

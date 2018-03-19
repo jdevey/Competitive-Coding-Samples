@@ -27,32 +27,6 @@ using namespace std;
 
 typedef long long ll;
 typedef vector <vector <int>> vvi;
-/*
-int lcs(string X, string Y, int n, int m) {
-    int L[n+1][m+1];
-    fl (i, n + 1) {
-        fl (j, m + 1) {
-            if (i == 0 || j == 0) L[i][j] = 0;
-  	        else if (X[i-1] == Y[j-1])L[i][j] = L[i-1][j-1] + 1;
-            else L[i][j] = max(L[i-1][j], L[i][j-1]);
-        }
-    }
-    return L[n][m];
-}
-*/
-/*
-int lcs(string X, string Y, int n, int m) {
-	int L[n + 1][m + 1];
-	fl (i, n + 1) {
-		fl (j, m + 1) {
-			if (i == 0 || j == 0) L[i][j] = 0;
-			else if (X[i - 1] == Y[j - 1]) L[i][j] = L[i - 1][j - 1] + 1;
-			else L[i][j] = max(L[i - 1][j], L[i][j - 1]);
-		}
-	}
-	return L[n][m];
-}
-*/
 
 int lcs(string a, string b, int n, int m) {
 	auto aa = new int*[n + 1];
