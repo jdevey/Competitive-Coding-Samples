@@ -1,5 +1,6 @@
-These are just a few samples of my competitive coding! Sorry, it may be a little sloppy :o
+Samples from one of my favorite hobbies: competitive coding.
 
+Includes practices, competitions, finished code, and unfinished code.
 
 You can see my actual profiles below:
 
